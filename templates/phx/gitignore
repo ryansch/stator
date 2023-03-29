@@ -1,0 +1,62 @@
+# NOTE: Most changes to this file should also be made to .dockerignore
+
+# The directory Mix will write compiled artifacts to.
+/_build/
+
+# If you run "mix test --cover", coverage assets end up here.
+/cover/
+
+# The directory Mix downloads your dependencies sources to.
+/deps/
+
+# Where 3rd-party dependencies like ExDoc output generated docs.
+/doc/
+
+# Ignore .fetch files in case you like to edit your project deps locally.
+/.fetch
+
+# If the VM crashes, it generates a dump, let's ignore it too.
+erl_crash.dump
+
+# Also ignore archive artifacts (built via "mix archive.build").
+*.ez
+
+# Ignore elixir language server
+/.elixir_ls/
+
+# Dialyzer/Dialyxir
+/priv/plts/*.plt
+/priv/plts/*.plt.hash
+
+# Temporary files, for example, from tests.
+/tmp
+
+# Build logs
+.log
+
+# Test results
+/junit
+
+# dev only environment variables
+.env
+
+# git worktree for pristine deploys
+.deploy
+
+### Static assets
+
+# Ignore assets that are produced by build tools.
+/priv/static/*
+!/priv/static/fonts/
+!/priv/static/images/
+!/priv/static/sprites/
+
+# Ignore digested assets cache.
+/priv/static/cache_manifest.json
+
+# Ignore node_modules
+node_modules
+
+# yarn/npm logs
+yarn-error.log
+npm-error.log

@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require 'bundler/inline'
+gemfile do
+  source 'https://rubygems.org'
+  gem 'thor'
+  # gem 'debug', '>= 1.0.0'
+end
+
+require_relative "../lib/rails"
+require_relative "../lib/phx"
+require_relative "../lib/hanami"
+
+class CLI < Thor
+  register(Rails, :rails, "rails [PATH]", "Generate rails application")
+  register(Phx, :phx, "phx [PATH]", "Generate phx application")
+  register(Hanami, :hanami, "hanami [PATH]", "Generate hanami application")
+end
+
+CLI.start(ARGV) if __FILE__==$0

@@ -1,0 +1,6 @@
+.git
+
+# vim swap files
+.*.swp
+
+/tmp

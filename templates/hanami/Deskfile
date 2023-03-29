@@ -1,0 +1,28 @@
+# Description: desk for working with a hanami app
+# Use `eval $(desk load)` or `desk go` to use.
+
+hanami() {
+  hanami_with_env hanami "$@"
+}
+
+bundle() {
+  hanami_with_env bundle "$@"
+}
+
+hanami_with_env() {
+  local -a hanami_env
+  if [ -n "$HANAMI" ]; then
+    hanami_env+=('-e')
+    hanami_env+=("HANAMI_ENV=$HANAMI_ENV")
+  fi
+
+  dev run --rm ${hanami_env[@]} hanami "$@"
+}
+
+solargraph() {
+  .bin/solargraph "$@"
+}
+
+standardrb() {
+  .bin/standardrb "$@"
+}

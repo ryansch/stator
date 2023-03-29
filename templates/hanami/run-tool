@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -euo pipefail
+
+options=("--rm" "-w" "$(pwd)")
+
+command="$(basename "$0")"
+case "$command" in
+	"solargraph")
+		if [ "${1:-}" = "stdio" ]; then
+			options+=("-T")
+		fi
+		;;
+	"standardrb")
+		options+=("-T")
+		;;
+esac
+
+exec /opt/dev-env/bin/dev run "${options[@]}" tools "${command}" "$@"

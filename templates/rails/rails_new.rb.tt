@@ -1,0 +1,9 @@
+gem_group :development, :test do
+  gem "rubocop", require: false
+  gem "rubocop-rspec", require: false
+  gem "standard", require: false
+  gem "solargraph", "~> 0.48", require: false
+  gem "solargraph-standardrb", require: false
+end
+
+environment 'config.hosts << "<%= name %>.test"', env: "development"

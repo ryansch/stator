@@ -1,0 +1,52 @@
+# Description: desk for working with an elixir app with phoenix
+# Use `eval $(desk load)` or `desk go` to use.
+
+mix() {
+  phx mix "$@"
+}
+
+iex() {
+  phx iex "$@"
+}
+
+yarn() {
+  run_cmd_with_prefix assets yarn "$@"
+}
+
+npx() {
+  run_cmd_with_prefix assets npx "$@"
+  # dev run --rm -w "$(pwd)" umbrella npx "$@"
+}
+
+tailwindcss() {
+  run_cmd_with_prefix assets yarn run tailwindcss "$@"
+}
+
+phx() {
+  run_cmd_with_prefix '' "$@"
+}
+
+function shipitron() {
+  dev run --rm shipitron deploy atlas "$@"
+}
+
+function shipitron_base() {
+  dev run --rm shipitron "$@"
+}
+
+run_cmd_with_prefix() {
+  opts=()
+  if [ -n "${1:-}" ]; then
+    opts+=("-w" "$(pwd)/${1}")
+  fi
+  shift
+
+  if [[ "${@:1:2}" = 'mix test' ]] || [[ "${@:1:2}" = 'mix ci' ]]; then
+    opts+=("-e" "MIX_ENV=test")
+  fi
+  if [ -z "$mix_env" ] && [ -n "$MIX_ENV" ]; then
+    opts+=("-e" "MIX_ENV=$MIX_ENV")
+  fi
+
+  dev run --rm ${opts[@]} phx "$@"
+}

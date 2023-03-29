@@ -1,0 +1,54 @@
+# Description: desk for working with a rails app
+# Use `eval $(desk load)` or `desk go` to use.
+
+rspec() {
+  local previous_rails_env=$RAILS_ENV
+  RAILS_ENV=test
+  rails_with_env rspec "$@"
+  unset RAILS_ENV
+  if [ -n "$previous_rails_env" ]; then
+    RAILS_ENV=$previous_rails_env
+  fi
+}
+
+rails() {
+  rails_with_env rails "$@"
+}
+
+rake() {
+  rails_with_env rake "$@"
+}
+
+bundle() {
+  rails_with_env bundle "$@"
+}
+
+yarn() {
+  dev run --rm rails yarn "$@"
+}
+
+esbuild() {
+  dev run --rm rails esbuild "$@"
+}
+
+rails_with_env() {
+  local -a rails_env
+  if [ -n "$RAILS_ENV" ]; then
+    rails_env+=('-e')
+    rails_env+=("RAILS_ENV=$RAILS_ENV")
+  fi
+
+  dev run --rm ${rails_env[@]} rails "$@"
+}
+
+solargraph() {
+  .bin/solargraph "$@"
+}
+
+rubocop() {
+  .bin/rubocop "$@"
+}
+
+standardrb() {
+  .bin/standardrb "$@"
+}

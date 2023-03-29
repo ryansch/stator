@@ -1,0 +1,8 @@
+IRB.conf[:SAVE_HISTORY] = 1000
+
+if Reline
+  Reline.dialog_default_bg_color = :black
+  Reline.dialog_default_fg_color = :red
+  Reline.dialog_highlight_bg_color = :blue
+  Reline.dialog_highlight_fg_color = :white
+end

@@ -1,0 +1,30 @@
+# Many thanks for https://evilmartians.com/chronicles/rubocoping-with-legacy-bring-your-ruby-code-up-to-standard
+# .rubocop.yml
+inherit_mode:
+  merge:
+    - Exclude
+
+require:
+  - rubocop-performance
+  - standard/cop/block_single_line_braces
+  - rubocop-rails
+  - rubocop-rspec
+
+inherit_gem:
+  standard: config/base.yml
+
+inherit_from:
+  - .rubocop/.rubocop_rails.yml
+  - .rubocop/.rubocop_rspec.yml
+  - .rubocop/.rubocop_strict.yml
+
+AllCops:
+  Exclude:
+    - 'bin/*'
+    - 'tmp/**/*'
+    - 'Gemfile'
+    - 'vendor/**/*'
+    - 'gemfiles/**/*'
+  DisplayCopNames: true
+  SuggestExtensions: false
+  TargetRubyVersion: 3.1

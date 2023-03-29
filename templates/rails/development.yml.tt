@@ -1,0 +1,19 @@
+services:
+  tools:
+    image: ryansch/<%= name %>:dev
+    entrypoint: /tools-entrypoint.sh
+    command: exit
+    stdin_open: true
+    working_dir: ${WORKSPACE_DIR}
+    volumes:
+      - bundler-data:/usr/local/bundle
+      - solargraph-cache:/home/deploy/.solargraph/cache
+      - .:${WORKSPACE_DIR}
+    environment:
+      FIXUID:
+      FIXGID:
+      WORKSPACE_DIR:
+      BOOTSNAP_CACHE_DIR: /usr/local/bundle/cache
+
+volumes:
+  solargraph-cache:

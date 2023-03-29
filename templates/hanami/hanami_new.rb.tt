@@ -1,0 +1,5 @@
+gem_group :development, :test do
+  gem "standard", require: false
+  gem "solargraph", "~> 0.48", require: false
+  gem "solargraph-standardrb", require: false
+end

@@ -1,0 +1,22 @@
+services:
+  rails:
+    build:
+      context: .
+    image: ryansch/<%= name %>:dev
+    working_dir: ${WORKSPACE_DIR}
+    volumes:
+      - bundler-data:/usr/local/bundle
+      - .:${WORKSPACE_DIR}
+    ports:
+      - "3000"
+    environment:
+      FIXUID:
+      FIXGID:
+      WORKSPACE_DIR:
+      BOOTSNAP_CACHE_DIR: /usr/local/bundle/cache
+      VIRTUAL_HOST: <%= name %>.test
+      VIRTUAL_PORT: 3000
+      HTTPS_METHOD: noredirect
+
+volumes:
+  bundler-data:
